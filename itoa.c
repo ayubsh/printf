@@ -21,7 +21,7 @@ void swap(char *x, char *y)
  */
 int abs(int a)
 {
-	a = a > 0 ? a : -a; 
+	a = a > 0 ? a : -a;
 	return (a);
 }
 
