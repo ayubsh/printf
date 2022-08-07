@@ -18,5 +18,6 @@ char* itoa(int value, char* buffer, int base);
 int printn(va_list args);
 int prints(va_list args);
 int printc(va_list args);
+int printpr(va_list args);
 
 #endif

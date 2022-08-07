@@ -27,6 +27,11 @@ int _putchar(char c)
 	return (1);
 }
 
+/**
+ * _puts - prints string
+ * @str: ptr to char (string)
+ * Return: returns the length of the string
+ */
 int _puts(char *str)
 {
 	register int i;
