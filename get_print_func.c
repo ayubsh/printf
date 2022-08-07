@@ -15,7 +15,9 @@ int (*get_print_func(char s))(va_list)
 		{'s', prints},
 		{'c', printc},
 		{'%', printpr},
-		{'d', printn}};
+		{'d', printn},
+		{'b', printb},
+	};
 
 	int i = 0;
 

@@ -47,6 +47,7 @@ char *reverse(char *buffer, int i, int j)
  * @value: value to be converted
  * @buffer: ptr to array where the string is returned to
  * @base: the base to be converted to
+ * Return: returns char * (string)
  */
 char *itoa(int value, char *buffer, int base)
 {
