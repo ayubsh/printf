@@ -8,7 +8,7 @@ int (*get_print_func(char s))(va_list)
     prf_t arr[] = {
         {'i', printn},
         {'s', prints},
-        {'c', prints},
+        {'c', printc},
         {'d', printn}};
 
     int i = 0;

@@ -27,21 +27,28 @@ int _printf(const char *format, ...)
 	}
 
 
-	while ((ch = format++))
+	for (ch = format; *ch; ch++) 
 	{
+
 		if (*ch != '%')
 		{
-			_putchar(*ch);
-			ch++;
+
+			length += _putchar(*ch);
 
 		}
 		else if (*ch == '%')
 		{
-			ch = format++;
+			ch++;
+			if (*ch == '%')
+			{
+				length += _putchar('%');
+				continue;
+			}
 			funcptr = get_print_func(*ch);	
-			length = (funcptr) ? funcptr(args) : _printf("%%%c", *ch);
+			length += (funcptr) ? funcptr(args) : _printf("%%%c", *ch);
 		}
 	}
+	_putchar(-1);
 	va_end(args);
 
 	return (length);

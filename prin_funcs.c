@@ -9,12 +9,13 @@ int printn(va_list args)
 
 		int_temp = va_arg(args, int);
 		itoa(int_temp, buffer, 10);
+		len += strlen(buffer);
+
 		for (int i = 0; buffer[i] != '\0'; i++)
 		{
 				_putchar(buffer[i]);
 
 		}
-		len += strlen(buffer);
 	   
 		return (len);
 }
@@ -22,31 +23,20 @@ int printn(va_list args)
 
 int prints(va_list args)
 {
-   char *string_temp;
-	 int len = 0;
+	char *string_temp = va_arg(args, char *);
 
-	 string_temp = va_arg(args, char *);
-	 len += strlen(string_temp);
+	if(!string_temp)
+		string_temp = "(null)";
 
-	 while (*string_temp)
-	 {
-	 		_putchar(*string_temp);
-			string_temp++;
-	 }
-
-	 return (len);
+	return (_puts(string_temp));
 
 }
 
 
 int printc(va_list args)
 {
-   int char_temp;
-	 int len = 0;
 
-	 char_temp = va_arg(args, int);
-	 _putchar(char_temp);
-	 len++;
+	 _putchar(va_arg(args, int));
 
-	 return (len);	 
+	 return (1);	 
 }

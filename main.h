@@ -12,6 +12,7 @@ int (*get_print_func(char s))(va_list);
 
 int _printf(const char *format, ...);
 int _putchar(char c);
+int _puts(char *str);
 char* itoa(int value, char* buffer, int base);
 
 int printn(va_list args);
