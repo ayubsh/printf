@@ -10,14 +10,14 @@ int printn(va_list args)
 {
 	int len = 0;
 
-	int int_temp;
+	int int_temp, i;
 	char buffer[512];
 
 	int_temp = va_arg(args, int);
 	itoa(int_temp, buffer, 10);
 	len += strlen(buffer);
 
-	for (int i = 0; buffer[i] != '\0'; i++)
+	for (i = 0; buffer[i] != '\0'; i++)
 	{
 		_putchar(buffer[i]);
 	}

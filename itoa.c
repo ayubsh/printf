@@ -20,7 +20,10 @@ void swap(char *x, char *y)
  * Return: the abs value
  */
 int abs(int a)
-	return (a > 0 ? a : -a);
+{
+	a = a > 0 ? a : -a; 
+	return (a);
+}
 
 /**
  * reverse - reverse the input buffer
@@ -47,18 +50,20 @@ char *reverse(char *buffer, int i, int j)
  */
 char *itoa(int value, char *buffer, int base)
 {
+	int n, i, r;
+
 	if (base < 2 || base > 32)
 	{
 		return (buffer);
 	}
 
-	int n = abs(value);
+	n = abs(value);
 
-	int i = 0;
+	i = 0;
 
 	while (n)
 	{
-		int r = n % base;
+		r = n % base;
 
 		if (r >= 10)
 		{
