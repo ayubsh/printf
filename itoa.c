@@ -45,50 +45,24 @@ char *reverse(char *buffer, int i, int j)
 /**
  * itoa - converts string to int
  * @value: value to be converted
- * @buffer: ptr to array where the string is returned to
+ * @c: ptr to array where the string is returned to
  * @base: the base to be converted to
  * Return: returns char * (string)
  */
-char *itoa(int value, char *buffer, int base)
+char *itoa(unsigned long int value, int base, int c)
 {
-	int n, i, r;
+	static char *rep;
+	static char buffer[50];
+	char *ptr;
 
-	if (base < 2 || base > 32)
-	{
-		return (buffer);
-	}
+	rep = (c) ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buffer[49];
+	*ptr = '\0';
 
-	n = abs(value);
+	do {
+		*--ptr = rep[value % base];
+		value /= base;
+	} while (value != 0);
 
-	i = 0;
-
-	while (n)
-	{
-		r = n % base;
-
-		if (r >= 10)
-		{
-			buffer[i++] = 65 + (r - 10);
-		}
-		else
-		{
-			buffer[i++] = 48 + r;
-		}
-
-		n = n / base;
-	}
-
-	if (i == 0)
-	{
-		buffer[i++] = '0';
-	}
-
-	if (value < 0 && base == 10)
-	{
-		buffer[i++] = '-';
-	}
-
-	buffer[i] = '\0';
-
-	return (reverse(buffer, 0, i - 1));
+	return (ptr);
 }

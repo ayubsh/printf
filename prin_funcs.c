@@ -4,36 +4,40 @@
 /**
  * printn - prints an interger
  * @args: takes array of arguments
+ * @f: ptr to struct of flag
  * Return: returns the length of the interger
  */
-int printn(va_list args)
+int printn(va_list args, flag_t *f)
 {
-	int len = 0;
+	int n_temp;
+	int length;
 
-	int int_temp, i;
-	char buffer[512];
+	n_temp = va_arg(args, int);
+	length = ndigit(n_temp);
 
-	int_temp = va_arg(args, int);
-	itoa(int_temp, buffer, 10);
-	len += strlen(buffer);
+	if (f->sp == 1 && f->pl == 0 && n_temp >= 0)
+		length += _putchar(' ');
+	if (f->pl == 1 && n_temp >= 0)
+		length += _putchar('+');
+	if (n_temp <= 0)
+		length++;
 
-	for (i = 0; buffer[i] != '\0'; i++)
-	{
-		_putchar(buffer[i]);
-	}
+	prn(n_temp);
 
-	return (len);
+	return (length);
 }
 
 /**
  * prints - prints char * (string)
  * @args: takes in array of args
+ * @f: ptr to struct of flag
  * Return: the string
  */
-int prints(va_list args)
+int prints(va_list args, flag_t *f)
 {
 	char *string_temp = va_arg(args, char *);
 
+	(void)f;
 	if (!string_temp)
 		string_temp = "(null)";
 
@@ -44,24 +48,36 @@ int prints(va_list args)
 /**
  * printc - print character
  * @args: takes in argument list
+ * @f: ptr to struct of flag
  * Return: 1
  */
-int printc(va_list args)
+int printc(va_list args, flag_t *f)
 {
+	int char_temp;
 
-	int char_temp = va_arg(args, int);
+	(void)f;
+	char_temp = va_arg(args, int);
 	 _putchar(char_temp);
 
 	return (1);
 }
 
+
 /**
- * printpr - prints the percentage signe (%)
- * @args: takes an argument list
- * Return: returns the ascii value of %
+ * printu - prints unsigned interger
+ * @args: takes arrays of va-list
+ * @f: ptr to flag struct
+ * Return: ptr to string of unsigned int
  */
-int printpr(va_list args)
+int printu(va_list args, flag_t *f)
 {
-	(void)args;
-	return (_putchar('%'));
+	unsigned int u_temp;
+	char *buffer;
+
+	u_temp = va_arg(args, unsigned int);
+	buffer = itoa(u_temp, 10, 0);
+
+	(void)f;
+
+	return (_puts(buffer));
 }

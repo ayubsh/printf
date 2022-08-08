@@ -11,9 +11,11 @@
 
 int _printf(const char *format, ...)
 {
-	int (*funcptr)(va_list);
+	int (*funcptr)(va_list, flag_t *);
 	const char *ch;
 	va_list args;
+
+	flag_t fs = {0, 0, 0};
 
 	register int length = 0;
 
@@ -24,10 +26,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (ch = format; *ch; ch++)
 	{
-
-		if (*ch != '%')
-			length += _putchar(*ch);
-		else if (*ch == '%')
+		if (*ch == '%')
 		{
 			ch++;
 			if (*ch == '%')
@@ -35,9 +34,13 @@ int _printf(const char *format, ...)
 				length += _putchar('%');
 				continue;
 			}
+			while (get_f(*ch, &fs))
+				ch++;
 			funcptr = get_print_func(*ch);
-			length += (funcptr) ? funcptr(args) : _printf("%%%c", *ch);
+			length += (funcptr) ? funcptr(args, &fs) : _printf("%%%c", *ch);
 		}
+		else
+			length += _putchar(*ch);
 	}
 	_putchar(-1);
 	va_end(args);
